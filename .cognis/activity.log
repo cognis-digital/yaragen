@@ -2,3 +2,4 @@
 2024-06-19T12:46:26  ci(core): handle empty and malformed input
 2024-07-13T19:03:33  refactor: future me will understand this
 2024-08-07T14:20:40  refactor(scan): simplify the walker
+2024-08-30T09:37:47  perf(scoring): handle empty and malformed input
