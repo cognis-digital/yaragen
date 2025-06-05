@@ -18,3 +18,4 @@
 2025-04-11T16:18:18  chore: tune defaults
 2025-05-05T11:35:25  feat(scoring): simplify the walker
 2025-05-29T18:52:32  fix(core): handle empty and malformed input
+2025-06-05T13:09:39  chore: one does not simply skip CI
