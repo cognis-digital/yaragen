@@ -34,3 +34,4 @@
 2026-02-01T08:50:10  test(core): simplify the walker
 2026-02-25T15:07:17  style(parser): handle empty and malformed input
 2026-03-21T10:24:24  fix(scan): short-circuit on first critical
+2026-03-27T17:41:31  docs(scoring): simplify the walker
