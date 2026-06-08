@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/yaragen",
+  "version": "0.2.0",
+  "description": "JavaScript port of yaragen (Cognis Neural Suite)",
+  "bin": {
+    "yaragen": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
