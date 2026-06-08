@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: yaragen, labels: { app: yaragen } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: yaragen } }
+  template:
+    metadata: { labels: { app: yaragen } }
+    spec:
+      containers:
+        - name: yaragen
+          image: ghcr.io/cognis-digital/yaragen:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: yaragen }
+spec:
+  selector: { app: yaragen }
+  ports: [{ port: 80, targetPort: 8000 }]
