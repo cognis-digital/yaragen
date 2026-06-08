@@ -36,9 +36,11 @@ Generate candidate YARA rules from sample files/strings — without standing up 
 <a name="features"></a>
 ## Features
 
-- ✅ Todo
-- ✅ Fixme
-- ✅ Xxx
+- ✅ Shannon Entropy
+- ✅ Extract Strings
+- ✅ Score String
+- ✅ Analyze Sample
+- ✅ Generate Rule
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
