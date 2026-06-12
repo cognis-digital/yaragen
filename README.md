@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-yaragen
+pip install "git+https://github.com/cognis-digital/yaragen.git"
 yaragen scan .            # → prioritized findings in seconds
 ```
 
@@ -50,7 +50,7 @@ Generate candidate YARA rules from sample files/strings — without standing up 
 ## Quick start
 
 ```bash
-pip install cognis-yaragen
+pip install "git+https://github.com/cognis-digital/yaragen.git"
 yaragen --version
 yaragen scan .                       # scan current project
 yaragen scan . --format json         # machine-readable
