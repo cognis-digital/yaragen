@@ -20,6 +20,32 @@ pip install cognis-yaragen
 yaragen scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install** the CLI (console script `yaragen`):
+   ```bash
+   pip install cognis-yaragen
+   ```
+2. **Generate candidate YARA rules** from sample files or directories you own:
+   ```bash
+   yaragen generate ./samples/malware.bin
+   yaragen generate ./samples/
+   ```
+3. **Tune the indicator budget** per sample with `--top`:
+   ```bash
+   yaragen generate ./samples/ --top 30
+   ```
+4. **Read the result** as JSON, or write a reviewable HTML report to disk:
+   ```bash
+   yaragen generate ./samples/ --format json -o rules.json
+   yaragen generate ./samples/ --format html -o yaragen-report.html
+   ```
+5. **Automate in CI** — regenerate candidate rules from a sample corpus on each run (review before deploying):
+   ```yaml
+   - run: pip install cognis-yaragen
+   - run: yaragen generate ./samples/ --format json -o candidate-rules.json
+   ```
+
 ## Contents
 
 - [Why yaragen?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
