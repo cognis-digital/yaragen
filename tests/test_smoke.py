@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from yaragen import (  # noqa: E402
     TOOL_NAME, TOOL_VERSION, extract_strings, score_string,
-    analyze_sample, generate_rule,
+    analyze_sample,
 )
 from yaragen.cli import main, _render_html  # noqa: E402
 
