@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/yaragen.git"
 yaragen scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+YARAGEN is a command-line tool that reads a file — such as a suspicious program or document — and automatically writes a YARA detection rule for it. YARA rules are the standard way security teams describe malware patterns so antivirus and monitoring tools can spot them; YARAGEN saves you from writing those rules by hand. You point it at any file, it extracts the most distinctive text and byte patterns inside it, scores them by how suspicious they look, and outputs a ready-to-use rule you can drop straight into your security pipeline. It is aimed at security engineers and analysts who need to turn sample files into detection signatures quickly, without any accounts, cloud services, or complex setup.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why yaragen?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -47,6 +53,42 @@ Generate candidate YARA rules from sample files/strings — without standing up 
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`yaragen` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/yaragen/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/yaragen/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/yaragen.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/yaragen.git"  # uv
+pip install "git+https://github.com/cognis-digital/yaragen.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/yaragen.git
+cd yaragen && pip install .
+```
+
+Then run:
+```sh
+yaragen --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
