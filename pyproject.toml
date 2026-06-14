@@ -34,3 +34,6 @@ yaragen = "yaragen.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["yaragen"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
