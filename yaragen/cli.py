@@ -105,6 +105,17 @@ def _render_html(reports: list[SampleReport]) -> str:
     return "\n".join(parts)
 
 
+def _positive_int(value: str) -> int:
+    """argparse type: integer that must be >= 1."""
+    try:
+        n = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"expected a positive integer, got: {value!r}")
+    if n < 1:
+        raise argparse.ArgumentTypeError(f"--top must be >= 1, got {n}")
+    return n
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog=TOOL_NAME,
@@ -117,7 +128,8 @@ def build_parser() -> argparse.ArgumentParser:
     g = sub.add_parser("generate", help="Analyze samples and emit candidate YARA rules.")
     g.add_argument("paths", nargs="+", help="Sample files or directories (artifacts you own).")
     g.add_argument("--format", choices=["table", "json", "html"], default="table")
-    g.add_argument("--top", type=int, default=20, help="Max indicators per sample.")
+    g.add_argument("--top", type=_positive_int, default=20,
+                   help="Max indicators per sample (must be >= 1, default 20).")
     g.add_argument("-o", "--output", help="Write report to this file instead of stdout.")
     return p
 
@@ -136,7 +148,16 @@ def main(argv=None) -> int:
         print("yaragen: error: no input files found", file=sys.stderr)
         return 2
 
-    reports = [analyze_sample(f, top=args.top) for f in files]
+    reports = []
+    for f in files:
+        try:
+            reports.append(analyze_sample(f, top=args.top))
+        except PermissionError:
+            print(f"yaragen: error: permission denied reading {f!r}", file=sys.stderr)
+            return 2
+        except OSError as exc:
+            print(f"yaragen: error: cannot read {f!r}: {exc}", file=sys.stderr)
+            return 2
 
     if args.format == "json":
         out = json.dumps({"tool": TOOL_NAME, "version": TOOL_VERSION,
@@ -147,8 +168,13 @@ def main(argv=None) -> int:
         out = _render_table(reports)
 
     if args.output:
-        with open(args.output, "w", encoding="utf-8") as fh:
-            fh.write(out)
+        try:
+            with open(args.output, "w", encoding="utf-8") as fh:
+                fh.write(out)
+        except OSError as exc:
+            print(f"yaragen: error: cannot write output to {args.output!r}: {exc}",
+                  file=sys.stderr)
+            return 2
         print(f"yaragen: wrote {args.format} report to {args.output}", file=sys.stderr)
     else:
         print(out)
