@@ -1,0 +1,13 @@
+$ yaragen-emit --help
+
+usage: yaragen [-h] [--version] {generate} ...
+
+Generate candidate YARA rules from owned sample files (defensive).
+
+positional arguments:
+  {generate}
+    generate  Analyze samples and emit candidate YARA rules.
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit

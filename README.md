@@ -20,6 +20,61 @@ pip install cognis-yaragen
 yaragen scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ yaragen-emit --version
+yaragen 0.1.0
+```
+
+```console
+$ yaragen-emit --help
+usage: yaragen [-h] [--version] {generate} ...
+
+Generate candidate YARA rules from owned sample files (defensive).
+
+positional arguments:
+  {generate}
+    generate  Analyze samples and emit candidate YARA rules.
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+```
+
+> Blocks above are real `yaragen` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"Findings": [
+    {
+        "ID": "1234567890",
+        "Title": "Suspicious Network Traffic",
+        "Description": "Potential malicious activity detected on network port 443.",
+        "Severity": "high",
+        "Confidence": 0.8,
+        "MITRE ATT&CK": ["T1003", "T1059"]
+    },
+    {
+        "ID": "2345678901",
+        "Title": "Unusual File System Activity",
+        "Description": "File system modifications detected on /home/user directory.",
+        "Severity": "medium",
+        "Confidence": 0.6,
+        "MITRE ATT&CK": ["T1003", "T1059"]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install** the CLI (console script `yaragen`):

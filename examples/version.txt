@@ -1,0 +1,3 @@
+$ yaragen-emit --version
+
+yaragen 0.1.0
